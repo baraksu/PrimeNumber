@@ -1,3 +1,4 @@
+גרסא חדשה
 .MODEL small
 .STACK 100h
 .DATA
