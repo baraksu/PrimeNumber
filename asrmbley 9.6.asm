@@ -1,4 +1,4 @@
-גרסא 2
+;version 102
 .MODEL small
 .STACK 100h
 .DATA
