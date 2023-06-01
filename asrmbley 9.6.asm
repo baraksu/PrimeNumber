@@ -1,13 +1,11 @@
-;version 102
+;version 103
 .MODEL small
 .STACK 100h
-.DATA
-msg0 db '           _____      _                  _   _                 _                ',13,10,           
-    db '          |  __ \    (_)                | \ | |               | |               ',13,10,
-    db '          | |__) | __ _ _ __ ___   ___  |  \| |_   _ _ __ ___ | |__   ___ _ __  ',13,10,
-    db '          |  ___/ '__| | '_ ` _ \ / _ \ | . ` | | | | '_ ' _ \| '_ \ / _ \ '__| ',13,10,
-    db '          | |   | |  | | | | | | |  __/ | |\  | |_| | | | | | | |_) |  __/ |    ',13,10,
-    db '          |_|   |_|  |_|_| |_| |_|\___| |_| \_|\__,_|_| |_| |_|_.__/ \___|_|    ',13,10,'$'
+.DATA 
+    msg0 db '              ___     _             _  _            _             ',13,10,  
+    db '             | _ \_ _(_)_ __  ___  | \| |_  _ _ __ | |__  ___ _ _ ',13,10,
+    db '             |  _/ '_| | '  \/ -_) | .` | || | '  \| '_ \/ -_) ,_|',13,10,
+    db '             |_| |_| |_|_|_|_\___| |_|\_|\_,_|_|_|_|_.__/\___|_|  ',13,10,'$'
 
     msg1 db "Supported values from up to 65520", 0Dh,0Ah
     db "Enter the number, and press ENTER: $"
@@ -168,6 +166,7 @@ putc    macro   char
         pop     ax
 endm
 
+;get the number to cx.(the code was taken from the example in emu8086)(Tobin.asm).
 ;Entry claim: doesn't have one.
 ;Exit claim: perceiving a number from the user.
 scan_num        proc    near
@@ -282,7 +281,8 @@ not_minus:
 make_minus      db      ?       ; used as a flag.
 ten             dw      10      ; used as multiplier.
 scan_num        endp
-                                 
+
+;prints the number in ax (the code was taken from the example in emu8086)(print_AX.asm).                                 
 ;Enter claim: ax (contains the next prime number).
 ;Exit claim: prints ax (the next prime number) into the console.
 print_ax proc
