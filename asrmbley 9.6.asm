@@ -1,4 +1,4 @@
-;version 103
+;final version
 .MODEL small
 .STACK 100h
 .DATA 
@@ -15,6 +15,8 @@
     msg4 db 13,10,'The next prime number is: $' 
     msg5 db 13,10,'END OF PROGRAM$' 
     msg6 db 13,10,'THANK YOU FOR USING OUR SYSTEM.$'
+    msg7 db 13,10,'If you want to keep using our system, press C if not, hit any other key.$'
+    msg8 db 13,10,'$'
     gb dw ?
     sum dw ?
     temp dw ?
@@ -28,7 +30,10 @@ start:
     lea dx,msg0
     push dx
     call print 
-    
+continue:
+    lea dx,msg8
+    push dx
+    call print
     lea dx,msg1
     push dx
     call print
@@ -44,7 +49,18 @@ start:
     xor ax,ax
     mov ax,num
     push ax
-    call nextPrime
+    call nextPrime 
+    
+    lea dx,msg7
+    push dx
+    call print
+    
+    mov ah,01
+    int 21h
+    cmp al,99
+    je continue
+    cmp al,67
+    je continue
     
     lea dx,msg5
     push dx
@@ -316,5 +332,4 @@ endp
         mov ah,4ch
         int 21h   
 END start
-
 
